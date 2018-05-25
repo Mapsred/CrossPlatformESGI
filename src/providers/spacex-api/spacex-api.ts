@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 /*
   Generated class for the SpacexApiProvider provider.
@@ -10,8 +11,15 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SpacexApiProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello SpacexApiProvider Provider');
+  baseUrl = "https://api.spacexdata.com/v2";
+
+  constructor(private http: HttpClient) {
+    
+  }
+
+  getAllLaunches(): Observable<any> {
+    const endpointUrl = `${this.baseUrl}/launches/all`;
+    return this.http.get<Observable<any>>(endpointUrl);
   }
 
 }
