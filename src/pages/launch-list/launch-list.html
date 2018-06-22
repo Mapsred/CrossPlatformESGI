@@ -22,7 +22,7 @@
       <p> {{launch.details}} </p>
     </ion-item>
   </ion-list> -->
-  <ion-card *ngFor="let launch of launches">
+  <ion-card *ngFor="let launch of launches" (click)="redirectToDetail(launch)">
     <img src="{{launch.links.mission_patch_small}}" alt="">
     <ion-card-content>
       <ion-card-title>

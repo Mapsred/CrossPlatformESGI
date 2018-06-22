@@ -1,0 +1,36 @@
+<!--
+  Generated template for the LaunchDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Launch #{{launch.flight_number}} {{launch.mission_name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <img src="{{launch.links.mission_patch_small}}" alt="">
+    <ion-card-content>
+      <ion-card-title>
+        <h2>
+          <b>{{launch.mission_name}}</b>
+          <span *ngFor="let payload of launch.rocket.second_stage.payloads">
+            <i *ngFor="let customer of payload.customers">{{customer}}</i>
+          </span>
+        </h2>
+      </ion-card-title>
+
+      <p>Launched from <b>{{ launch.launch_site.site_name_long }}</b></p>
+      <p>Launched at <b>{{ launch.launch_date_local|date: 'h:mm a, MMMM d y' }}</b></p>
+
+      <p> Description : <br>{{launch.details}} </p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
