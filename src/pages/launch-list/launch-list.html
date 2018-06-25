@@ -5,11 +5,12 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Launches</ion-title>
   </ion-navbar>
-
 </ion-header>
 <ion-content padding>
   <!-- <ion-list>
@@ -21,7 +22,7 @@
       <p> {{launch.details}} </p>
     </ion-item>
   </ion-list> -->
-  <ion-card *ngFor="let launch of launches">
+  <ion-card *ngFor="let launch of launches" (click)="redirectToDetail(launch)">
     <img src="{{launch.links.mission_patch_small}}" alt="">
     <ion-card-content>
       <ion-card-title>

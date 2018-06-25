@@ -6,6 +6,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { LaunchDetailPage } from "../pages/launch-detail/launch-detail";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,7 +18,8 @@ import { SpacexApiProvider } from '../providers/spacex-api/spacex-api';
     MyApp,
     HomePage,
     LaunchListPage,
-    ListPage
+    ListPage,
+    LaunchDetailPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { SpacexApiProvider } from '../providers/spacex-api/spacex-api';
     MyApp,
     HomePage,
     LaunchListPage,
-    ListPage
+    ListPage,
+    LaunchDetailPage
   ],
   providers: [
     StatusBar,
