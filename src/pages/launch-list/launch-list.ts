@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { SpacexApiProvider } from '../../providers/spacex-api/spacex-api';
 import { ILaunch } from '../../app/Models/ILaunch';
@@ -20,7 +20,6 @@ export class LaunchListPage implements OnInit{
 
   private launches: ILaunch[];
   private launchesCopy: ILaunch[];
-  @ViewChild('scrollTopButton') scrollTopButton : ElementRef;
 
   constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider, public myElement: ElementRef) {
     this.spacexApi.getAllLaunches("any").subscribe(data => {
