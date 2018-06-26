@@ -35,11 +35,7 @@ export class LaunchListPage implements OnInit{
     this.ionScroll = this.myElement.nativeElement.children[1].children[1];
     // On scroll function
     this.ionScroll.addEventListener("scroll", () => {
-      if (this.ionScroll.scrollTop > window.innerHeight) {
-        this.showButton = true;
-      } else {
-        this.showButton = false;
-      }
+      this.showButton = this.ionScroll.scrollTop > window.innerHeight;
     });
   }
 
