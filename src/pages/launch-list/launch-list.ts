@@ -20,6 +20,8 @@ export class LaunchListPage implements OnInit{
 
   private launches: ILaunch[];
   private launchesCopy: ILaunch[];
+  private ionScroll;
+  private showButton;
 
   constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider, public myElement: ElementRef) {
     this.spacexApi.getAllLaunches("any").subscribe(data => {
