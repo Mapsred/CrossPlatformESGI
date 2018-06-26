@@ -18,12 +18,14 @@ import { LaunchDetailPage } from "../launch-detail/launch-detail";
 })
 export class LaunchListPage {
 
-  launches: ILaunch[];
+  private launches: ILaunch[];
+  private launchesCopy: ILaunch[];
 
   constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider) {
     this.spacexApi.getAllLaunches("any").subscribe(data => {
       this.launches = data;
-    })
+      this.launchesCopy = data;
+    });
   }
 
   ionViewDidLoad() {
@@ -36,4 +38,22 @@ export class LaunchListPage {
     })
   }
 
+  initializeLaunches() {
+    this.launches = this.launchesCopy;
+  }
+
+  getLaunches(ev: any) {
+    // Reset items back to all of the items
+    this.initializeLaunches();
+
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.launches = this.launches.filter((launch) => {
+        return (launch.mission_name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      });
+    }
+  }
 }
