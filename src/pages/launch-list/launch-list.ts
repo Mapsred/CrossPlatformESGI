@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { SpacexApiProvider } from '../../providers/spacex-api/spacex-api';
 import { ILaunch } from '../../app/Models/ILaunch';
@@ -16,15 +16,29 @@ import { LaunchDetailPage } from "../launch-detail/launch-detail";
   selector: 'page-launch-list',
   templateUrl: 'launch-list.html',
 })
-export class LaunchListPage {
+export class LaunchListPage implements OnInit{
 
   private launches: ILaunch[];
   private launchesCopy: ILaunch[];
+  @ViewChild('scrollTopButton') scrollTopButton : ElementRef;
 
-  constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider) {
+  constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider, public myElement: ElementRef) {
     this.spacexApi.getAllLaunches("any").subscribe(data => {
       this.launches = data;
       this.launchesCopy = data;
+    });
+  }
+
+  ngOnInit() {
+    // Ionic scroll element
+    this.ionScroll = this.myElement.nativeElement.children[1].children[1];
+    // On scroll function
+    this.ionScroll.addEventListener("scroll", () => {
+      if (this.ionScroll.scrollTop > window.innerHeight) {
+        this.showButton = true;
+      } else {
+        this.showButton = false;
+      }
     });
   }
 
@@ -55,5 +69,16 @@ export class LaunchListPage {
         return (launch.mission_name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });
     }
+  }
+
+  scrollToTop(scrollDuration) {
+    let scrollStep = -this.ionScroll.scrollTop / (scrollDuration / 15);
+    let scrollInterval = setInterval( () => {
+      if ( this.ionScroll.scrollTop != 0 ) {
+        this.ionScroll.scrollTop = this.ionScroll.scrollTop + scrollStep;
+      } else {
+        clearInterval(scrollInterval);
+      }
+    }, 15);
   }
 }
