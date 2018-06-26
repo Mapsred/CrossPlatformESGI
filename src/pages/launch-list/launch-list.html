@@ -11,19 +11,9 @@
     </button>
     <ion-title>Launches</ion-title>
   </ion-navbar>
-  <ion-grid>
-    <ion-row>
-      <ion-col *ngIf="showButton" col-2>
-        <button class="scrollToTopButton"  ion-button color="light" icon-only (click)="scrollToTop(100)">
-          <ion-icon name='arrow-up'></ion-icon>
-        </button>
-      </ion-col>
-      <ion-col>
-        <ion-searchbar (ionInput)="getLaunches($event)"></ion-searchbar>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-searchbar (ionInput)="getLaunches($event)"></ion-searchbar>
 </ion-header>
+
 <ion-content padding>
   <!-- <ion-list>
     <ion-item *ngFor="let launch of launches" >
@@ -34,14 +24,20 @@
       <p> {{launch.details}} </p>
     </ion-item>
   </ion-list> -->
+  <ion-fab right bottom *ngIf="showButton">
+    <button ion-fab color="blue" (click)="scrollToTop(100)">
+      <ion-icon name="arrow-up"></ion-icon>
+    </button>
+  </ion-fab>
 
-      <ion-card *ngFor="let launch of launches" (click)="redirectToDetail(launch)">
-        <img src="{{launch.links.mission_patch_small}}" alt="">
-        <ion-card-content>
-          <ion-card-title>
-            <h2>{{launch.mission_name}}</h2>
-          </ion-card-title>
-          <p>{{launch.details}}</p>
-        </ion-card-content>
-      </ion-card>
+  <ion-card *ngFor="let launch of launches" (click)="redirectToDetail(launch)">
+    <img src="{{launch.links.mission_patch_small}}" alt="">
+    <ion-card-content>
+      <ion-card-title>
+        <h2>{{launch.mission_name}}</h2>
+      </ion-card-title>
+      <p>{{launch.details}}</p>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
