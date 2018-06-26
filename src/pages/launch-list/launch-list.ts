@@ -78,4 +78,5 @@ export class LaunchListPage implements OnInit{
       }
     }, 15);
   }
+
 }
