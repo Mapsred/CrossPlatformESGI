@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
+import { SpacexApiProvider } from '../../providers/spacex-api/spacex-api';
+import { ICompany } from '../../app/Models/ICompany';
 
 /**
  * Generated class for the CompanyPage page.
@@ -15,11 +17,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CompanyPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  company: ICompany[];
+
+  constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider) {
+    this.spacexApi.getCompany("any").subscribe(data => {
+      this.company = data;
+    })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CompanyPage');
+    console.log(this.company);
   }
 
 }
