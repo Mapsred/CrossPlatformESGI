@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { CompanyPage } from "../pages/Company/Company";
+import { CompanyPage } from "../pages/company/company";
 import { LaunchListPage } from '../pages/launch-list/launch-list';
 import { CreditsPage } from "../pages/credits/credits";
 
