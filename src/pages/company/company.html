@@ -17,9 +17,24 @@
 
 
 <ion-content padding>
- <h2> Company : {{company?.name}} </h2>
- <h3> Name of the founder {{company?.founder}} </h3>
- <h3> Founded in {{company?.founded}} </h3>
- <h3> Number of Employees : {{company?.employees}} </h3>
- <h3> headquarters adress : {{company?.headquarters.city}} {{company?.headquarters.state}} </h3>
+ <h1>  </h1>
+
+ <div class="list card">
+
+    <div class="item item-avatar">
+      <h2> {{company?.name}} </h2>
+      <p>Founded in {{company?.founded}} by {{company?.founder}}</p>
+    </div>
+
+    <div class="item item-body">
+      <img class="full-image" src="https://pbs.twimg.com/profile_images/972170159614906369/0o9cdCOp_400x400.jpg">
+      <p>
+        {{company?.summary}}
+      </p>
+      <button ion-button secondary full menuToggle>
+          More information
+      </button>
+    </div>
+
+  </div>
 </ion-content>
