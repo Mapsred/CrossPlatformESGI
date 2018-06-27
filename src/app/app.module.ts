@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { LaunchDetailPage } from "../pages/launch-detail/launch-detail";
+import { CreditsPage } from "../pages/credits/credits";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,7 +20,8 @@ import { SpacexApiProvider } from '../providers/spacex-api/spacex-api';
     HomePage,
     LaunchListPage,
     ListPage,
-    LaunchDetailPage
+    LaunchDetailPage,
+    CreditsPage,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { SpacexApiProvider } from '../providers/spacex-api/spacex-api';
     HomePage,
     LaunchListPage,
     ListPage,
-    LaunchDetailPage
+    LaunchDetailPage,
+    CreditsPage,
   ],
   providers: [
     StatusBar,
@@ -41,4 +44,6 @@ import { SpacexApiProvider } from '../providers/spacex-api/spacex-api';
     SpacexApiProvider
   ]
 })
-export class AppModule {}
+
+export class AppModule {
+}
