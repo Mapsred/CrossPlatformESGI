@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {DateTime, NavController} from 'ionic-angular';
 import { SpacexApiProvider } from '../../providers/spacex-api/spacex-api';
 import { YoutubeProvider } from '../../providers/youtube/youtube';
 import { ILaunch } from '../../app/Models/ILaunch';
@@ -13,6 +13,8 @@ export class HomePage {
   private nextLaunch: ILaunch;
   private latestLaunch: ILaunch;
   private countDownDate;
+  private lastLaunchDate;
+  private nextLaunchDate;
   private days;
   private hours;
   private minutes;
@@ -27,11 +29,14 @@ export class HomePage {
     this.spacexApi.getNextLaunch().subscribe(data => {
       this.nextLaunch = data;
       this.countDownLaunch();
-      // console.log(data);
+      this.nextLaunch.links.mission_patch_small = this.checkMissionPatchSmall(data);
+      this.nextLaunchDate = this.getFormatDateToDisplay(data.launch_date_utc);
     });
 
     this.spacexApi.getLatestLaunch().subscribe( data => {
       this.latestLaunch = data;
+      this.latestLaunch.links.mission_patch_small = this.checkMissionPatchSmall(data);
+      this.lastLaunchDate = this.getFormatDateToDisplay(data.launch_date_utc);
       this.lastLaunchVideoEmbedURL = this.youtubeProvider.getEmbedURL(data.links.video_link);
     });
   }
@@ -60,5 +65,18 @@ export class HomePage {
       }
 
     }, 1000)
+  }
+
+  getFormatDateToDisplay(dateOrigin, locale = 'en-US')
+  {
+    let date = new Date(dateOrigin);
+    return date.toLocaleString(locale);
+  }
+
+  checkMissionPatchSmall(data){
+    if(data.links.mission_patch_small === null){
+      return '../../assets/imgs/unknown_avatar.png';
+    }
+    return data.links.mission_patch_small
   }
 }
