@@ -17,6 +17,8 @@ import { RocketPage } from "../pages/rocket/rocket";
 import { CapsulePage } from "../pages/capsule/capsule";
 import { LaunchpadPage } from "../pages/launchpad/launchpad";
 import { StatsPage } from "../pages/stats/stats";
+import { YoutubeProvider } from '../providers/youtube/youtube';
+
 
 @NgModule({
   declarations: [
@@ -52,8 +54,10 @@ import { StatsPage } from "../pages/stats/stats";
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
-    SpacexApiProvider
+
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SpacexApiProvider,
+    YoutubeProvider
   ]
 })
 

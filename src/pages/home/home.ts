@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SpacexApiProvider } from '../../providers/spacex-api/spacex-api';
+import { YoutubeProvider } from '../../providers/youtube/youtube';
 import { ILaunch } from '../../app/Models/ILaunch';
 
 @Component({
@@ -16,8 +17,9 @@ export class HomePage {
   private hours;
   private minutes;
   private seconds;
+  private lastLaunchVideoEmbedURL;
 
-  constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider) {
+  constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider, private youtubeProvider: YoutubeProvider) {
     this.days = 0;
     this.hours = 0;
     this.minutes = 0;
@@ -25,12 +27,12 @@ export class HomePage {
     this.spacexApi.getNextLaunch().subscribe(data => {
       this.nextLaunch = data;
       this.countDownLaunch();
-      console.log(data);
+      // console.log(data);
     });
 
     this.spacexApi.getLatestLaunch().subscribe( data => {
       this.latestLaunch = data;
-      console.log(data);
+      this.lastLaunchVideoEmbedURL = this.youtubeProvider.getEmbedURL(data.links.video_link);
     });
   }
 
@@ -59,5 +61,4 @@ export class HomePage {
 
     }, 1000)
   }
-
 }
