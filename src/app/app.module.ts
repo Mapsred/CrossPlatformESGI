@@ -6,7 +6,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { CompanyPage } from "../pages/Company/Company";
+import { CompanyPage } from "../pages/company/company";
 import { LaunchDetailPage } from "../pages/launch-detail/launch-detail";
 import { CreditsPage } from "../pages/credits/credits";
 

@@ -27,7 +27,6 @@ export class CompanyPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CompanyPage');
-    console.log(this.company);
   }
 
 }
