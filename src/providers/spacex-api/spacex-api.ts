@@ -59,11 +59,11 @@ export class SpacexApiProvider {
 
   getNextLaunch(): Observable<ILaunch> {
     const endpointUrl = `${this.baseUrl}/launches/next`;
-    return this.http.get<ICompany>(endpointUrl);
+    return this.http.get<ILaunch>(endpointUrl);
   }
 
   getLatestLaunch(): Observable<ILaunch> {
     const endpointUrl = `${this.baseUrl}/launches/latest`;
-    return this.http.get<ICompany>(endpointUrl);
+    return this.http.get<ILaunch>(endpointUrl);
   }
 }
