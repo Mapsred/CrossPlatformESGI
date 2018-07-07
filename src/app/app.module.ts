@@ -19,6 +19,7 @@ import { LaunchpadPage } from "../pages/launchpad/launchpad";
 import { StatsPage } from "../pages/stats/stats";
 import { RocketDetailPage } from "../pages/rocket-detail/rocket-detail";
 import { YoutubeProvider } from '../providers/youtube/youtube';
+import { FilterPage } from "../pages/filter/filter";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { YoutubeProvider } from '../providers/youtube/youtube';
     CompanyPage,
     LaunchDetailPage,
     CreditsPage,
-    StatsPage
+    StatsPage,
+    FilterPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { YoutubeProvider } from '../providers/youtube/youtube';
     CompanyPage,
     LaunchDetailPage,
     CreditsPage,
-    StatsPage
+    StatsPage,
+    FilterPage
   ],
   providers: [
     StatusBar,

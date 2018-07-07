@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController } from 'ionic-angular';
 import { SpacexApiProvider } from '../../providers/spacex-api/spacex-api';
 import { ILaunch } from '../../app/Models/ILaunch';
 import { LaunchDetailPage } from "../launch-detail/launch-detail";
+import { FilterPage } from "../filter/filter";
 
 /**
  * Generated class for the LaunchListPage page.
@@ -23,7 +24,7 @@ export class LaunchListPage implements OnInit{
   private ionScroll;
   private showButton;
 
-  constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider, public myElement: ElementRef) {
+  constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider, public myElement: ElementRef, public modalCtrl: ModalController) {
     this.spacexApi.getAllLaunches("any").subscribe(data => {
       this.launches = data;
       this.launchesCopy = data;
@@ -77,6 +78,11 @@ export class LaunchListPage implements OnInit{
         clearInterval(scrollInterval);
       }
     }, 15);
+  }
+
+  presentModal() {
+    const modal = this.modalCtrl.create(FilterPage);
+    modal.present();
   }
 
 }
