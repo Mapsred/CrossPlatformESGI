@@ -1,3 +1,32 @@
 page-home {
+  .aspect-ratio-box {
+    height: 0;
+    overflow: hidden;
+    padding-top: 591.44px / 1127.34px * 100%;
+    background: black;
+    position: relative;
 
+    .aspect-ratio-box-inside {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: #ffffff;
+
+      table {
+        text-align: center;
+        th, td {
+          padding: 0 10px;
+          font-size: 1em;
+        }
+        td {
+          padding: 5px 0;
+        }
+      }
+    }
+  }
 }

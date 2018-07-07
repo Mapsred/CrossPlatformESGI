@@ -16,7 +16,7 @@ export class SpacexApiProvider {
   baseUrl = "https://api.spacexdata.com/v2";
 
   constructor(private http: HttpClient) {
-    
+
   }
 
   getAllLaunches(params : any): Observable<ILaunch[]> {
@@ -29,6 +29,16 @@ export class SpacexApiProvider {
     const endpointUrl = `${this.baseUrl}/info`;
     const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
     return this.http.get<ICompany[]>(endpointUrl, { params: httpParams });
+  }
+
+  getNextLaunch(): Observable<ILaunch> {
+    const endpointUrl = `${this.baseUrl}/launches/next`;
+    return this.http.get<ICompany>(endpointUrl);
+  }
+
+  getLatestLaunch(): Observable<ILaunch> {
+    const endpointUrl = `${this.baseUrl}/launches/latest`;
+    return this.http.get<ICompany>(endpointUrl);
   }
 
 }
