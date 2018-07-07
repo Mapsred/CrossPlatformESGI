@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ILaunch } from '../../app/Models/ILaunch';
 import { ICompany } from '../../app/Models/ICompany';
+import { IRockets } from "../../app/Models/IRockets";
 
 /*
   Generated class for the SpacexApiProvider provider.
@@ -16,7 +17,7 @@ export class SpacexApiProvider {
   baseUrl = "https://api.spacexdata.com/v2";
 
   constructor(private http: HttpClient) {
-    
+
   }
 
   getAllLaunches(params : any): Observable<ILaunch[]> {
@@ -30,5 +31,13 @@ export class SpacexApiProvider {
     const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
     return this.http.get<ICompany[]>(endpointUrl, { params: httpParams });
   }
+
+  getRocket(params : any): Observable<IRockets[]> {
+    const endpointUrl = `${this.baseUrl}/rockets`;
+    const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<IRockets[]>(endpointUrl, { params: httpParams });
+  }
+
+
 
 }
