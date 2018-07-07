@@ -14,6 +14,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LaunchListPage } from '../pages/launch-list/launch-list';
 import { SpacexApiProvider } from '../providers/spacex-api/spacex-api';
+import { YoutubeProvider } from '../providers/youtube/youtube';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SpacexApiProvider } from '../providers/spacex-api/spacex-api';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SpacexApiProvider
+    SpacexApiProvider,
+    YoutubeProvider
   ]
 })
 
