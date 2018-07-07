@@ -22,7 +22,6 @@ export class RocketPage {
   constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider) {
     this.spacexApi.getRocket("any").subscribe(data => {
       this.rockets = data;
-      console.log(this.rockets);
     })
   }
 
