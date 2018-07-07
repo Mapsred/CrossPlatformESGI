@@ -15,7 +15,7 @@
 
 <ion-content padding>
 
-  <ion-card *ngFor="let rocket of rockets">
+  <ion-card *ngFor="let rocket of rockets" (click)="redirectToRocketDetail(rocket.id)">
     <ion-card-content>
       <ion-card-title>{{rocket.name}}</ion-card-title>
       <p>Boosters : {{rocket.boosters}}</p>

@@ -21,7 +21,6 @@ export class LaunchDetailPage {
 
   constructor(public navParams: NavParams) {
     this.launch = navParams.get('launch');
-    console.log(this.launch);
   }
 
   ionViewDidLoad() {

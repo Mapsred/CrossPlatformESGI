@@ -24,7 +24,7 @@
         ({{launchpad.location.latitude}} lat / {{launchpad.location.longitude}} lon)
       </p>
       <p>Launched rockets : </p>
-      <ul *ngFor="let rocket of launchpad.vehicles_launched">
+      <ul *ngFor="let rocket of launchpad.vehicles_launched" (click)="redirectToRocketDetail(rocket.replace(' ', '').toLowerCase())">
         <li>{{rocket}}</li>
       </ul>
       <br>
