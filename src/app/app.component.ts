@@ -7,7 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { CompanyPage } from "../pages/company/company";
 import { LaunchListPage } from '../pages/launch-list/launch-list';
 import { CreditsPage } from "../pages/credits/credits";
-import { RocketPage } from "../pages/rocket/rocket";
+import { RocketListPage } from "../pages/rocket-list/rocket-list";
 import { CapsulePage } from "../pages/capsule/capsule";
 import { LaunchpadPage } from "../pages/launchpad/launchpad";
 import { StatsPage } from "../pages/stats/stats";
@@ -30,7 +30,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Company', component: CompanyPage },
       { title: 'Launchs', component: LaunchListPage },
-      { title: 'Rockets', component: RocketPage },
+      { title: 'Rockets', component: RocketListPage },
       { title: 'Capsules', component: CapsulePage },
       { title: 'Launchpads', component: LaunchpadPage },
       { title: 'Stats', component: StatsPage },

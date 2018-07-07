@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ILaunch } from '../../app/Models/ILaunch';
 import { ICompany } from '../../app/Models/ICompany';
+import { IRockets } from "../../app/Models/IRockets";
+import { ICapsule } from "../../app/Models/ICapsule";
+import { ILaunchpad } from "../../app/Models/ILaunchpad";
 
 /*
   Generated class for the SpacexApiProvider provider.
@@ -16,7 +19,7 @@ export class SpacexApiProvider {
   baseUrl = "https://api.spacexdata.com/v2";
 
   constructor(private http: HttpClient) {
-    
+
   }
 
   getAllLaunches(params : any): Observable<ILaunch[]> {
@@ -30,5 +33,31 @@ export class SpacexApiProvider {
     const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
     return this.http.get<ICompany[]>(endpointUrl, { params: httpParams });
   }
+
+  getRocket(params : any): Observable<IRockets[]> {
+    const endpointUrl = `${this.baseUrl}/rockets`;
+    const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<IRockets[]>(endpointUrl, { params: httpParams });
+  }
+
+  getRocketDetail(params : any, rocket: any): Observable<IRockets> {
+    const endpointUrl = `${this.baseUrl}/rockets/`+rocket;
+    const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<IRockets>(endpointUrl, { params: httpParams });
+  }
+
+  getCapsule(params : any): Observable<ICapsule[]> {
+    const endpointUrl = `${this.baseUrl}/capsules`;
+    const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<ICapsule[]>(endpointUrl, { params: httpParams });
+  }
+
+  getLaunchpas(params : any): Observable<ILaunchpad[]> {
+    const endpointUrl = `${this.baseUrl}/launchpads`;
+    const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<ILaunchpad[]>(endpointUrl, { params: httpParams });
+  }
+
+
 
 }

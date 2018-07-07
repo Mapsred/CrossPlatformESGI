@@ -13,17 +13,19 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LaunchListPage } from '../pages/launch-list/launch-list';
 import { SpacexApiProvider } from '../providers/spacex-api/spacex-api';
-import { RocketPage } from "../pages/rocket/rocket";
+import { RocketListPage } from "../pages/rocket-list/rocket-list";
 import { CapsulePage } from "../pages/capsule/capsule";
 import { LaunchpadPage } from "../pages/launchpad/launchpad";
 import { StatsPage } from "../pages/stats/stats";
+import { RocketDetailPage } from "../pages/rocket-detail/rocket-detail";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LaunchListPage,
-    RocketPage,
+    RocketListPage,
+    RocketDetailPage,
     CapsulePage,
     LaunchpadPage,
     CompanyPage,
@@ -41,7 +43,8 @@ import { StatsPage } from "../pages/stats/stats";
     MyApp,
     HomePage,
     LaunchListPage,
-    RocketPage,
+    RocketListPage,
+    RocketDetailPage,
     CapsulePage,
     LaunchpadPage,
     CompanyPage,
