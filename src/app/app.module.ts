@@ -18,6 +18,7 @@ import { CapsulePage } from "../pages/capsule/capsule";
 import { LaunchpadPage } from "../pages/launchpad/launchpad";
 import { StatsPage } from "../pages/stats/stats";
 import { RocketDetailPage } from "../pages/rocket-detail/rocket-detail";
+import { FilterPage } from "../pages/filter/filter";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { RocketDetailPage } from "../pages/rocket-detail/rocket-detail";
     CompanyPage,
     LaunchDetailPage,
     CreditsPage,
-    StatsPage
+    StatsPage,
+    FilterPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { RocketDetailPage } from "../pages/rocket-detail/rocket-detail";
     CompanyPage,
     LaunchDetailPage,
     CreditsPage,
-    StatsPage
+    StatsPage,
+    FilterPage
   ],
   providers: [
     StatusBar,
