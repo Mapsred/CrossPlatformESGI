@@ -9,6 +9,8 @@
 
 <ion-content padding>
 
+  <h3>Next launch</h3>
+
   <ion-card>
     <ion-item>
       <ion-avatar item-start>
@@ -18,44 +20,51 @@
       <p *ngIf="nextLaunchDate">{{ nextLaunchDate }}</p>
     </ion-item>
 
-    <div class="aspect-ratio-box">
-      <div class="aspect-ratio-box-inside">
-        <table>
-          <thead>
-          <th>Days</th>
-          <th>Hours</th>
-          <th>Minutes</th>
-          <th>Seconds</th>
-          </thead>
-          <tbody>
-          <tr>
-            <td>{{ days }}</td>
-            <td>{{ hours }}</td>
-            <td>{{ minutes }}</td>
-            <td>{{ seconds }}</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <ion-grid class="countdown-wrapper" id="countdown" text-center>
+      <ion-row>
+        <ion-col>D</ion-col>
+        <ion-col>H</ion-col>
+        <ion-col>M</ion-col>
+        <ion-col>S</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>{{ days }}</ion-col>
+        <ion-col>{{ hours }}</ion-col>
+        <ion-col>{{ minutes }}</ion-col>
+        <ion-col>{{ seconds }}</ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <iframe class="border-none" width="100%" *ngIf="nextLaunchVideoEmbedURL" [src]="nextLaunchVideoEmbedURL"></iframe>
 
     <ion-card-content>
-      <ion-card-title *ngIf="nextLaunch">Next launch</ion-card-title>
-      <p *ngIf="nextLaunch">{{ nextLaunch.details }}</p>
+      <div class="align-center">
+        <button *ngIf="!nextLaunchVideoEmbedURL" id="refreshLiveButton" ion-button color="danger" outline
+                (click)="refreshLive()">Voir le live
+        </button>
+      </div>
+
+      <p *ngIf="nextLaunch && nextLaunch.details !== null">
+        {{ nextLaunch.details }}
+      </p>
     </ion-card-content>
 
-    <ion-row>
-      <ion-col center text-center>
-        <ion-note *ngIf="nextLaunch">{{ nextLaunch.rocket.rocket_name }}</ion-note>
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note *ngIf="nextLaunch">{{ nextLaunch.launch_site.site_name }}</ion-note>
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note *ngIf="nextLaunch">#{{ nextLaunch.flight_number }}</ion-note>
-      </ion-col>
-    </ion-row>
+    <ion-grid text-center>
+      <ion-row>
+        <ion-col>
+          <ion-note *ngIf="nextLaunch">{{ nextLaunch.rocket.rocket_name }}</ion-note>
+        </ion-col>
+        <ion-col>
+          <ion-note *ngIf="nextLaunch">{{ nextLaunch.launch_site.site_name }}</ion-note>
+        </ion-col>
+        <ion-col>
+          <ion-note *ngIf="nextLaunch">#{{ nextLaunch.flight_number }}</ion-note>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
+
+  <h3>Latest launch</h3>
 
   <ion-card>
     <ion-item>
@@ -66,24 +75,25 @@
       <p *ngIf="lastLaunchDate">{{ lastLaunchDate }}</p>
     </ion-item>
 
-    <iframe width="100%" *ngIf="lastLaunchVideoEmbedURL" [src]="lastLaunchVideoEmbedURL"></iframe>
+    <iframe class="border-none" width="100%" *ngIf="lastLaunchVideoEmbedURL" [src]="lastLaunchVideoEmbedURL"></iframe>
 
     <ion-card-content>
-      <ion-card-title>Latest launch</ion-card-title>
       <p *ngIf="latestLaunch">{{ latestLaunch.details }}</p>
     </ion-card-content>
 
-    <ion-row>
-      <ion-col center text-center>
-        <ion-note *ngIf="latestLaunch">{{ latestLaunch.rocket.rocket_name }}</ion-note>
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note *ngIf="latestLaunch">{{ latestLaunch.launch_site.site_name }}</ion-note>
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note *ngIf="latestLaunch">#{{ latestLaunch.flight_number }}</ion-note>
-      </ion-col>
-    </ion-row>
-  </ion-card>
+    <ion-grid text-center>
+      <ion-row>
+        <ion-col>
+          <ion-note *ngIf="latestLaunch">{{ latestLaunch.rocket.rocket_name }}</ion-note>
+        </ion-col>
+        <ion-col>
+          <ion-note *ngIf="latestLaunch">{{ latestLaunch.launch_site.site_name }}</ion-note>
+        </ion-col>
+        <ion-col>
+          <ion-note *ngIf="latestLaunch">#{{ latestLaunch.flight_number }}</ion-note>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
+  </ion-card>
 </ion-content>

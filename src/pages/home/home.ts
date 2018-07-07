@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {DateTime, NavController} from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { SpacexApiProvider } from '../../providers/spacex-api/spacex-api';
 import { YoutubeProvider } from '../../providers/youtube/youtube';
 import { ILaunch } from '../../app/Models/ILaunch';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -20,17 +21,15 @@ export class HomePage {
   private minutes;
   private seconds;
   private lastLaunchVideoEmbedURL;
+  private nextLaunchVideoEmbedURL;
 
-  constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider, private youtubeProvider: YoutubeProvider) {
-    this.days = 0;
-    this.hours = 0;
-    this.minutes = 0;
-    this.seconds = 0;
+  constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider, private youtubeProvider: YoutubeProvider, public alertCtrl: AlertController) {
     this.spacexApi.getNextLaunch().subscribe(data => {
       this.nextLaunch = data;
       this.countDownLaunch();
       this.nextLaunch.links.mission_patch_small = this.checkMissionPatchSmall(data);
       this.nextLaunchDate = this.getFormatDateToDisplay(data.launch_date_utc);
+      this.nextLaunchVideoEmbedURL = data.links.video_link !== null ? this.youtubeProvider.getEmbedURL(data.links.video_link) : null;
     });
 
     this.spacexApi.getLatestLaunch().subscribe( data => {
@@ -43,14 +42,23 @@ export class HomePage {
 
   countDownLaunch() {
     this.countDownDate = this.nextLaunch.launch_date_unix * 1000;
+    // let test = new Date().getTime() + 5000;
+    let distance, now;
 
     let interval = setInterval( handle => {
-      // console.log(this.seconds);
       // Get todays date and time
-      let now = new Date().getTime();
+      now = new Date().getTime();
 
       // Find the distance between now an the count down date
-      let distance = this.countDownDate - now;
+      distance = this.countDownDate - now;
+      // distance = test - now;
+
+      // If the count down is finished, write some text
+      if (now >= this.countDownDate) {
+        clearInterval(interval);
+        document.getElementById("countdown").remove();
+        this.refreshLive();
+      }
 
       // Time calculations for days, hours, minutes and seconds
       this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -58,13 +66,30 @@ export class HomePage {
       this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      // If the count down is finished, write some text
-      if (distance < 0) {
-        clearInterval(interval);
-        // document.getElementById("demo").innerHTML = "EXPIRED"
-      }
-
     }, 1000)
+  }
+
+  refreshLive() {
+    this.spacexApi.getNextLaunch().subscribe(data => {
+      this.nextLaunchVideoEmbedURL = data.links.video_link !== null ? this.youtubeProvider.getEmbedURL(data.links.video_link) : null;
+      // this.nextLaunchVideoEmbedURL = this.youtubeProvider.getEmbedURL("https://www.youtube.com/watch?v=EevV3VnSf9k");
+      if(this.nextLaunchVideoEmbedURL !== null){
+        this.removeRefreshButton();
+      } else {
+        this.alertCtrl.create({
+          title: 'Live not yet started!',
+          subTitle: 'Sorry, the live is not yet started. Please, retry later.',
+          buttons: ['OK']
+        }).present();
+      }
+    });
+  }
+
+  removeRefreshButton() {
+    let refreshLiveButtonElement = document.getElementById('refreshLiveButton');
+    if(refreshLiveButtonElement !== null){
+      refreshLiveButtonElement.remove();
+    }
   }
 
   getFormatDateToDisplay(dateOrigin, locale = 'en-US')
