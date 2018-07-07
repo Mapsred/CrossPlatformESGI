@@ -4,10 +4,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { CompanyPage } from "../pages/company/company";
 import { LaunchListPage } from '../pages/launch-list/launch-list';
 import { CreditsPage } from "../pages/credits/credits";
+import { RocketPage } from "../pages/rocket/rocket";
+import { CapsulePage } from "../pages/capsule/capsule";
+import { LaunchpadPage } from "../pages/launchpad/launchpad";
+import { StatsPage } from "../pages/stats/stats";
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +20,7 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -27,7 +30,10 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Company', component: CompanyPage },
       { title: 'Launchs', component: LaunchListPage },
-      { title: 'List', component: ListPage },
+      { title: 'Rockets', component: RocketPage },
+      { title: 'Capsules', component: CapsulePage },
+      { title: 'Launchpads', component: LaunchpadPage },
+      { title: 'Stats', component: StatsPage },
       { title: 'Credits', component: CreditsPage },
     ];
 
