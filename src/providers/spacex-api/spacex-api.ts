@@ -40,6 +40,12 @@ export class SpacexApiProvider {
     return this.http.get<IRockets[]>(endpointUrl, { params: httpParams });
   }
 
+  getRocketDetail(params : any, rocket: any): Observable<IRockets> {
+    const endpointUrl = `${this.baseUrl}/rockets/`+rocket;
+    const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<IRockets>(endpointUrl, { params: httpParams });
+  }
+
   getCapsule(params : any): Observable<ICapsule[]> {
     const endpointUrl = `${this.baseUrl}/capsules`;
     const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());

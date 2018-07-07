@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { IRockets } from "../../app/Models/IRockets";
+import { SpacexApiProvider } from '../../providers/spacex-api/spacex-api';
 
 /**
  * Generated class for the RocketDetailPage page.
@@ -18,10 +19,10 @@ export class RocketDetailPage {
 
   rocket: IRockets;
 
-
-  constructor(public navParams: NavParams) {
-    this.rocket = navParams.get('rocket');
-    console.log(this.rocket);
+  constructor(public navParams: NavParams, private spacexApi: SpacexApiProvider) {
+    this.spacexApi.getRocketDetail('any', navParams.get('rocket')).subscribe(data => {
+      this.rocket = data;
+    });
   }
 
   ionViewDidLoad() {

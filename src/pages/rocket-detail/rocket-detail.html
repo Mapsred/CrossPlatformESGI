@@ -16,22 +16,22 @@
 <ion-content padding>
   <ion-card>
     <ion-card-content>
-      <ion-card-title>{{rocket.name}}</ion-card-title>
-      <p>Boosters : {{rocket.boosters}}</p>
-      <p>Active : {{rocket.active ? "true": "false"}}</p>
-      <p>Cost per launch : {{rocket.cost_per_launch}}$</p>
-      <p>{{rocket.success_rate_pct}}% of success</p>
-      <p>First flight : {{rocket.first_flight}}</p>
-      <p>Country : {{rocket.company}}</p>
+      <ion-card-title>{{rocket?.name}}</ion-card-title>
+      <p>Boosters : {{rocket?.boosters}}</p>
+      <p>Active : {{rocket?.active ? "true": "false"}}</p>
+      <p>Cost per launch : {{rocket?.cost_per_launch}}$</p>
+      <p>{{rocket?.success_rate_pct}}% of success</p>
+      <p>First flight : {{rocket?.first_flight}}</p>
+      <p>Country : {{rocket?.company}}</p>
       <br>
 
       <h3>Mesures : </h3>
-      <p>Height of {{rocket.height.meters}} meters / {{rocket.height.feet}} feet</p>
-      <p>Diameter of {{rocket.diameter.meters}} meters / {{rocket.diameter.feet}} feet</p>
-      <p>Mass of {{rocket.mass.kg}} kg / {{rocket.mass.lb}} lb</p>
+      <p>Height of {{rocket?.height.meters}} meters / {{rocket?.height.feet}} feet</p>
+      <p>Diameter of {{rocket?.diameter.meters}} meters / {{rocket?.diameter.feet}} feet</p>
+      <p>Mass of {{rocket?.mass.kg}} kg / {{rocket?.mass.lb}} lb</p>
       <br>
       <h3>Description : </h3>
-      <p>{{rocket.description}}</p>
+      <p>{{rocket?.description}}</p>
     </ion-card-content>
   </ion-card>
 
