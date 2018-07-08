@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Filter by</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Filter by</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Rocket</ion-label>
+        <ion-select (ionChange)="rocketChange($event)">
+          <ion-option *ngFor="let rocket of rockets" value="{{ rocket.id }}">{{ rocket.name }}</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Capsule</ion-label>
+      <ion-select (ionChange)="capsuleChange($event)">
+        <ion-option *ngFor="let capsuleDetail of capsuleDetails" value="{{ capsuleDetail.capsule_serial }}">{{ capsuleDetail.capsule_serial }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Launchpad</ion-label>
+      <ion-select (ionChange)="launchpadChange($event)">
+        <ion-option *ngFor="let launchpad of launchpads" value="{{ launchpad.id }}">{{ launchpad.full_name }}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <button ion-button clear item-end (click)="reset()">
+        <span ion-text color="primary" >Reset</span>
+      </button>
+      <button ion-button clear item-end (click)="filtered()">
+        <span ion-text color="primary" >Ok</span>
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>

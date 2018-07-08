@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController } from 'ionic-angular';
 import { SpacexApiProvider } from '../../providers/spacex-api/spacex-api';
 import { ILaunch } from '../../app/Models/ILaunch';
 import { LaunchDetailPage } from "../launch-detail/launch-detail";
+import { FilterPage } from "../filter/filter";
 
 /**
  * Generated class for the LaunchListPage page.
@@ -16,14 +17,14 @@ import { LaunchDetailPage } from "../launch-detail/launch-detail";
   selector: 'page-launch-list',
   templateUrl: 'launch-list.html',
 })
-export class LaunchListPage implements OnInit{
+export class LaunchListPage implements OnInit {
 
   private launches: ILaunch[];
   private launchesCopy: ILaunch[];
   private ionScroll;
   private showButton;
 
-  constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider, public myElement: ElementRef) {
+  constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider, public myElement: ElementRef, public modalCtrl: ModalController) {
     this.spacexApi.getAllLaunches("any").subscribe(data => {
       this.launches = data;
       this.launchesCopy = data;
@@ -70,13 +71,31 @@ export class LaunchListPage implements OnInit{
 
   scrollToTop(scrollDuration) {
     let scrollStep = -this.ionScroll.scrollTop / (scrollDuration / 15);
-    let scrollInterval = setInterval( () => {
-      if ( this.ionScroll.scrollTop != 0 ) {
+    let scrollInterval = setInterval(() => {
+      if (this.ionScroll.scrollTop != 0) {
         this.ionScroll.scrollTop = this.ionScroll.scrollTop + scrollStep;
       } else {
         clearInterval(scrollInterval);
       }
     }, 15);
+  }
+
+  presentModal() {
+    const modal = this.modalCtrl.create(FilterPage);
+    modal.onDidDismiss((data) => {
+      if (data !== undefined) {
+        if(data !== 'reset'){
+          this.spacexApi.getLaunches(data).subscribe(dataLaunches => {
+            this.launches = dataLaunches;
+          });
+        } else {
+          this.spacexApi.getAllLaunches(data).subscribe(dataLaunches => {
+            this.launches = dataLaunches;
+          });
+        }
+      }
+    });
+    modal.present();
   }
 
 }

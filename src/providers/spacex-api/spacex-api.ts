@@ -5,6 +5,7 @@ import { ILaunch } from '../../app/Models/ILaunch';
 import { ICompany } from '../../app/Models/ICompany';
 import { IRockets } from "../../app/Models/IRockets";
 import { ICapsule } from "../../app/Models/ICapsule";
+import { ICapsuleDetails } from "../../app/Models/ICapsuleDetails";
 import { ILaunchpad } from "../../app/Models/ILaunchpad";
 
 /*
@@ -24,6 +25,12 @@ export class SpacexApiProvider {
 
   getAllLaunches(params : any): Observable<ILaunch[]> {
     const endpointUrl = `${this.baseUrl}/launches/all`;
+    const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<ILaunch[]>(endpointUrl, { params: httpParams });
+  }
+
+  getLaunches(params : any): Observable<ILaunch[]> {
+    const endpointUrl = `${this.baseUrl}/launches`;
     const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
     return this.http.get<ILaunch[]>(endpointUrl, { params: httpParams });
   }
@@ -49,6 +56,12 @@ export class SpacexApiProvider {
     const endpointUrl = `${this.baseUrl}/capsules`;
     const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
     return this.http.get<ICapsule[]>(endpointUrl, { params: httpParams });
+  }
+
+  getCapsuleDetails(params : any): Observable<ICapsuleDetails[]> {
+    const endpointUrl = `${this.baseUrl}/parts/caps`;
+    const httpParams  = Object.getOwnPropertyNames(params).reduce((p,key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<ICapsuleDetails[]>(endpointUrl, { params: httpParams });
   }
 
   getLaunchpas(params : any): Observable<ILaunchpad[]> {
