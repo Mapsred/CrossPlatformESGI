@@ -11,6 +11,7 @@ import { RocketListPage } from "../pages/rocket-list/rocket-list";
 import { CapsulePage } from "../pages/capsule/capsule";
 import { LaunchpadPage } from "../pages/launchpad/launchpad";
 import { StatsPage } from "../pages/stats/stats";
+import {FilterPage} from "../pages/filter/filter";
 
 @Component({
   templateUrl: 'app.html'
@@ -29,9 +30,8 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Company', component: CompanyPage },
-
       { title: 'Launches', component: LaunchListPage },
-      { title: 'Rockets', component: RocketPage },
+      { title: 'Rockets', component: RocketListPage },
       { title: 'Capsules', component: CapsulePage },
       { title: 'Launchpads', component: LaunchpadPage },
       { title: 'Stats', component: StatsPage },

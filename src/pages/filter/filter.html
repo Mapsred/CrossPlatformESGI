@@ -23,31 +23,28 @@
   <ion-list>
     <ion-item>
       <ion-label>Rocket</ion-label>
-      <ion-select [(ngModel)]="rockets">
-        <ion-option value="bfr1">BFR 1</ion-option>
-        <ion-option value="bfr2">BFR 2</ion-option>
-        <ion-option value="bfr3">BFR 3</ion-option>
-      </ion-select>
+        <ion-select (ionChange)="rocketChange($event)">
+          <ion-option *ngFor="let rocket of rockets" value="{{ rocket.id }}">{{ rocket.name }}</ion-option>
+        </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Capsule</ion-label>
-      <ion-select [(ngModel)]="capsules">
-        <ion-option value="caps1">Capsule 1</ion-option>
-        <ion-option value="caps2">Capsule 2</ion-option>
-        <ion-option value="caps3">Capsule 3</ion-option>
+      <ion-select (ionChange)="capsuleChange($event)">
+        <ion-option *ngFor="let capsuleDetail of capsuleDetails" value="{{ capsuleDetail.capsule_serial }}">{{ capsuleDetail.capsule_serial }}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>Launchpad</ion-label>
-      <ion-select [(ngModel)]="launchpads">
-        <ion-option value="limoges">Limoges</ion-option>
-        <ion-option value="troyes">Troyes</ion-option>
-        <ion-option value="paris">Paris</ion-option>
+      <ion-select (ionChange)="launchpadChange($event)">
+        <ion-option *ngFor="let launchpad of launchpads" value="{{ launchpad.id }}">{{ launchpad.full_name }}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <button ion-button right (click)="dismiss()">
-        <span ion-text>Ok</span>
+      <button ion-button clear item-end (click)="reset()">
+        <span ion-text color="primary" >Reset</span>
+      </button>
+      <button ion-button clear item-end (click)="filtered()">
+        <span ion-text color="primary" >Ok</span>
       </button>
     </ion-item>
   </ion-list>
