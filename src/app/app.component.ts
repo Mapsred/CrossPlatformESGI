@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { HomePage } from '../pages/home/home';
 import { CompanyPage } from "../pages/company/company";
 import { LaunchListPage } from '../pages/launch-list/launch-list';
@@ -11,7 +10,6 @@ import { RocketListPage } from "../pages/rocket-list/rocket-list";
 import { CapsulePage } from "../pages/capsule/capsule";
 import { LaunchpadPage } from "../pages/launchpad/launchpad";
 import { StatsPage } from "../pages/stats/stats";
-import {FilterPage} from "../pages/filter/filter";
 
 @Component({
   templateUrl: 'app.html'
