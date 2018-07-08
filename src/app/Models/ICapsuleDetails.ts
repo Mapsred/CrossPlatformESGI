@@ -1,4 +1,4 @@
-interface ICapsuleDetails {
+export interface ICapsuleDetails {
   capsule_serial: string;
   capsule_id: string;
   status: string;
