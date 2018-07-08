@@ -31,7 +31,7 @@ export class MyApp {
       { title: 'Company', component: CompanyPage },
 
       { title: 'Launches', component: LaunchListPage },
-      { title: 'Rockets', component: RocketPage },
+      // { title: 'Rockets', component: RocketPage },
       { title: 'Capsules', component: CapsulePage },
       { title: 'Launchpads', component: LaunchpadPage },
       { title: 'Stats', component: StatsPage },
