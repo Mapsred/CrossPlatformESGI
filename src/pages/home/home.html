@@ -8,11 +8,92 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <h3>Next launch</h3>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-start>
+        <img *ngIf="nextLaunch" [src]="nextLaunch.links.mission_patch_small">
+      </ion-avatar>
+      <h2 *ngIf="nextLaunch">{{ nextLaunch.mission_name }}</h2>
+      <p *ngIf="nextLaunchDate">{{ nextLaunchDate }}</p>
+    </ion-item>
+
+    <ion-grid class="countdown-wrapper" id="countdown" text-center>
+      <ion-row>
+        <ion-col>D</ion-col>
+        <ion-col>H</ion-col>
+        <ion-col>M</ion-col>
+        <ion-col>S</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>{{ days }}</ion-col>
+        <ion-col>{{ hours }}</ion-col>
+        <ion-col>{{ minutes }}</ion-col>
+        <ion-col>{{ seconds }}</ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <iframe class="border-none" width="100%" *ngIf="nextLaunchVideoEmbedURL" [src]="nextLaunchVideoEmbedURL"></iframe>
+
+    <ion-card-content>
+      <div class="align-center">
+        <button *ngIf="!nextLaunchVideoEmbedURL" id="refreshLiveButton" ion-button color="danger" outline
+                (click)="refreshLive()">Voir le live
+        </button>
+      </div>
+
+      <p *ngIf="nextLaunch && nextLaunch.details !== null">
+        {{ nextLaunch.details }}
+      </p>
+    </ion-card-content>
+
+    <ion-grid text-center>
+      <ion-row>
+        <ion-col>
+          <ion-note *ngIf="nextLaunch">{{ nextLaunch.rocket.rocket_name }}</ion-note>
+        </ion-col>
+        <ion-col>
+          <ion-note *ngIf="nextLaunch">{{ nextLaunch.launch_site.site_name }}</ion-note>
+        </ion-col>
+        <ion-col>
+          <ion-note *ngIf="nextLaunch">#{{ nextLaunch.flight_number }}</ion-note>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <h3>Latest launch</h3>
+
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-start>
+        <img *ngIf="latestLaunch" [src]="latestLaunch.links.mission_patch_small">
+      </ion-avatar>
+      <h2 *ngIf="latestLaunch">{{ latestLaunch.mission_name }}</h2>
+      <p *ngIf="lastLaunchDate">{{ lastLaunchDate }}</p>
+    </ion-item>
+
+    <iframe class="border-none" width="100%" *ngIf="lastLaunchVideoEmbedURL" [src]="lastLaunchVideoEmbedURL"></iframe>
+
+    <ion-card-content>
+      <p *ngIf="latestLaunch">{{ latestLaunch.details }}</p>
+    </ion-card-content>
+
+    <ion-grid text-center>
+      <ion-row>
+        <ion-col>
+          <ion-note *ngIf="latestLaunch">{{ latestLaunch.rocket.rocket_name }}</ion-note>
+        </ion-col>
+        <ion-col>
+          <ion-note *ngIf="latestLaunch">{{ latestLaunch.launch_site.site_name }}</ion-note>
+        </ion-col>
+        <ion-col>
+          <ion-note *ngIf="latestLaunch">#{{ latestLaunch.flight_number }}</ion-note>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
 </ion-content>
