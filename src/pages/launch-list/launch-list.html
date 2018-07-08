@@ -15,29 +15,28 @@
 </ion-header>
 
 <ion-content padding>
-  <!-- <ion-list>
-    <ion-item *ngFor="let launch of launches" >
-      <ion-avatar item-start>
-        <img src="{{launch.links.mission_patch_small}}">
-      </ion-avatar>
-      <h2> {{launch.mission_name}} </h2>
-      <p> {{launch.details}} </p>
+
+  <ion-list>
+    <ion-item *ngFor="let launch of launches">
+      <ion-thumbnail item-start>
+        <img src="{{launch.links.mission_patch_small}}" alt="">
+      </ion-thumbnail>
+      <h2>{{launch.mission_name}}</h2>
+      <p>{{launch.details}}</p>
+      <button ion-button clear item-end (click)="redirectToDetail(launch)">View</button>
     </ion-item>
-  </ion-list> -->
-  <ion-fab right bottom *ngIf="showButton">
-    <button ion-fab color="blue" (click)="scrollToTop(100)">
-      <ion-icon name="arrow-up"></ion-icon>
+  </ion-list>
+
+  <ion-fab right middle>
+    <button mini ion-fab color="blue" (click)="presentModal()">
+      <ion-icon name="funnel"></ion-icon>
     </button>
   </ion-fab>
 
-  <ion-card *ngFor="let launch of launches" (click)="redirectToDetail(launch)">
-    <img src="{{launch.links.mission_patch_small}}" alt="">
-    <ion-card-content>
-      <ion-card-title>
-        <h2>{{launch.mission_name}}</h2>
-      </ion-card-title>
-      <p>{{launch.details}}</p>
-    </ion-card-content>
-  </ion-card>
+  <ion-fab right bottom *ngIf="showButton">
+    <button mini ion-fab color="blue" (click)="scrollToTop(100)">
+      <ion-icon name="arrow-up"></ion-icon>
+    </button>
+  </ion-fab>
 
 </ion-content>

@@ -29,8 +29,9 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Company', component: CompanyPage },
-      { title: 'Launchs', component: LaunchListPage },
-      { title: 'Rockets', component: RocketListPage },
+
+      { title: 'Launches', component: LaunchListPage },
+      // { title: 'Rockets', component: RocketPage },
       { title: 'Capsules', component: CapsulePage },
       { title: 'Launchpads', component: LaunchpadPage },
       { title: 'Stats', component: StatsPage },
