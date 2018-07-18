@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, ViewController } from 'ionic-angular';
 import { IRockets } from '../../app/Models/IRockets';
 import { ICapsule } from "../../app/Models/ICapsule";
 import { ICapsuleDetails } from "../../app/Models/ICapsuleDetails";
@@ -20,22 +20,25 @@ import { SpacexApiProvider } from '../../providers/spacex-api/spacex-api';
 })
 export class FilterPage {
 
-  private rockets: IRockets[];
-  private capsules: ICapsule[];
-  private capsuleDetails: ICapsuleDetails[];
-  private launchpads: ILaunchpad[];
+  protected rockets: IRockets[];
+  protected capsules: ICapsule[];
+  protected capsuleDetails: ICapsuleDetails[];
+  protected launchpads: ILaunchpad[];
   private globalFilter = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, private spacexApi: SpacexApiProvider) {
+  constructor(public viewCtrl: ViewController, private spacexApi: SpacexApiProvider) {
     this.spacexApi.getRocket("any").subscribe(data => {
       this.rockets = data;
     });
+
     this.spacexApi.getCapsule("any").subscribe(data => {
       this.capsules = data;
     });
+
     this.spacexApi.getCapsuleDetails("any").subscribe(data => {
       this.capsuleDetails = data;
     });
+
     this.spacexApi.getLaunchpas("any").subscribe(data => {
       this.launchpads = data;
     });

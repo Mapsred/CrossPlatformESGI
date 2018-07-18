@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { SpacexApiProvider } from '../../providers/spacex-api/spacex-api';
 import { YoutubeProvider } from '../../providers/youtube/youtube';
 import { ILaunch } from '../../app/Models/ILaunch';
@@ -14,16 +13,16 @@ export class HomePage {
   private nextLaunch: ILaunch;
   private latestLaunch: ILaunch;
   private countDownDate;
-  private lastLaunchDate;
-  private nextLaunchDate;
-  private days;
-  private hours;
-  private minutes;
-  private seconds;
-  private lastLaunchVideoEmbedURL;
+  protected lastLaunchDate;
+  protected nextLaunchDate;
+  protected days;
+  protected hours;
+  protected minutes;
+  protected seconds;
+  protected lastLaunchVideoEmbedURL;
   private nextLaunchVideoEmbedURL;
 
-  constructor(public navCtrl: NavController, private spacexApi: SpacexApiProvider, private youtubeProvider: YoutubeProvider, public alertCtrl: AlertController) {
+  constructor(private spacexApi: SpacexApiProvider, private youtubeProvider: YoutubeProvider, public alertCtrl: AlertController) {
     this.spacexApi.getNextLaunch().subscribe(data => {
       this.nextLaunch = data;
       this.countDownLaunch();
@@ -32,7 +31,7 @@ export class HomePage {
       this.nextLaunchVideoEmbedURL = data.links.video_link !== null ? this.youtubeProvider.getEmbedURL(data.links.video_link) : null;
     });
 
-    this.spacexApi.getLatestLaunch().subscribe( data => {
+    this.spacexApi.getLatestLaunch().subscribe(data => {
       this.latestLaunch = data;
       this.latestLaunch.links.mission_patch_small = this.checkMissionPatchSmall(data);
       this.lastLaunchDate = this.getFormatDateToDisplay(data.launch_date_utc);
@@ -45,7 +44,7 @@ export class HomePage {
     // let test = new Date().getTime() + 5000;
     let distance, now;
 
-    let interval = setInterval( handle => {
+    let interval = setInterval(() => {
       // Get todays date and time
       now = new Date().getTime();
 
@@ -87,7 +86,7 @@ export class HomePage {
 
   removeRefreshButton() {
     let refreshLiveButtonElement = document.getElementById('refreshLiveButton');
-    if(refreshLiveButtonElement !== null){
+    if (refreshLiveButtonElement !== null) {
       refreshLiveButtonElement.remove();
     }
   }
